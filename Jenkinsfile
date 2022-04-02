@@ -14,7 +14,7 @@ pipeline {
                         jobs[stageName] = {
                             stage(stageName) {
                                 node("win") {
-                                    skipDefaultCheckout()
+                                    skipDefaultCheckout(false)
                                     // 要自行設定dir, 靠agent的Number of executors不可靠
                                     dir(stageName) {
                                         withEnv(["CPU=${CPU}"]) {
