@@ -9,11 +9,11 @@ pipeline {
                     def jobs = [:]
                     for (int i = 0; i < CPUList.size(); i++) {
                         def CPU = CPUList[i]
-                        stageName = "$CPU"
+                        def stageName = "$CPU"
                         // stageName stage
                         jobs[stageName] = {
-                            stage('ParallelBuild') {
-                                node {
+                            stage(stageName) {
+                                node("win01") {
                                     withEnv(["CPU=${CPU}"]) {
                                         // checkout Jenkinsfilescripts/
                                         //git branch: "config-rtostest",
@@ -21,6 +21,12 @@ pipeline {
                                         //pipelineAsCode.parallelStages()
                                         stage("A") {
                                             print "A"
+                                        }
+                                        stage("B") {
+                                            print "B"
+                                        }
+                                        stage("C") {
+                                            print "C"
                                         }
                                     }
                                 }
