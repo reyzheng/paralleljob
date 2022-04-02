@@ -17,9 +17,9 @@ pipeline {
                                     // 要自行設定dir, 靠agent的Number of executors不可靠
                                     dir(stageName) {
                                         withEnv(["CPU=${CPU}"]) {
-                                            // checkout Jenkinsfilescripts/
-                                            //git branch: "main",
-                                            //    url: "https://github.com/reyzheng/paralleljob.git"
+                                            // 要自己重新checkout pipeline again
+                                            git branch: "main",
+                                                url: "https://github.com/reyzheng/paralleljob.git"
                                             stage("A") {
                                                 print "A"
                                                 writeFile(file: "a.txt", text: "aaa")
