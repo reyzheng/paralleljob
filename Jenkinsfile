@@ -16,8 +16,8 @@ pipeline {
                                 node("win01") {
                                     withEnv(["CPU=${CPU}"]) {
                                         // checkout Jenkinsfilescripts/
-                                        //git branch: "config-rtostest",
-                                        //    url: "ssh://psp.sdlc.rd.realtek.com:29418/sdlc/rtos/jenkins"
+                                        git branch: "main",
+                                            url: "https://github.com/reyzheng/paralleljob.git"
                                         //pipelineAsCode.parallelStages()
                                         stage("A") {
                                             print "A"
