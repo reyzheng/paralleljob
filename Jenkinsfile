@@ -13,20 +13,23 @@ pipeline {
                         // stageName stage
                         jobs[stageName] = {
                             stage(stageName) {
-                                node("win01") {
-                                    withEnv(["CPU=${CPU}"]) {
-                                        // checkout Jenkinsfilescripts/
-                                        git branch: "main",
-                                            url: "https://github.com/reyzheng/paralleljob.git"
-                                        //pipelineAsCode.parallelStages()
-                                        stage("A") {
-                                            print "A"
-                                        }
-                                        stage("B") {
-                                            print "B"
-                                        }
-                                        stage("C") {
-                                            print "C"
+                                node("win") {
+                                    // 要自行設定dir, 靠agent的Number of executors不可靠
+                                    dir(stageName) {
+                                        withEnv(["CPU=${CPU}"]) {
+                                            // checkout Jenkinsfilescripts/
+                                            //git branch: "main",
+                                            //    url: "https://github.com/reyzheng/paralleljob.git"
+                                            stage("A") {
+                                                print "A"
+                                                writeFile(file: "a.txt", text: "aaa")
+                                            }
+                                            stage("B") {
+                                                print "B"
+                                            }
+                                            stage("C") {
+                                                print "C"
+                                            }
                                         }
                                     }
                                 }
