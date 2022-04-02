@@ -24,12 +24,15 @@ pipeline {
                                             stage("A") {
                                                 print "A"
                                                 writeFile(file: "a.txt", text: "aaa")
+                                                sleep(10)
                                             }
                                             stage("B") {
                                                 print "B"
+                                                sleep(10)
                                             }
                                             stage("C") {
                                                 print "C"
+                                                sleep(10)
                                             }
                                         }
                                     }
